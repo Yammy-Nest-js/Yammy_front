@@ -1,42 +1,90 @@
-import { FC } from 'react';
+import axios from 'axios';
 import HeadInfo from 'components/Headinfo';
+import Link from 'next/link';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { signupSchema } from 'utils/resolver/auth.schema';
 
-const signupPage: FC = () => {
+interface ISignupFormInput {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordCheck?: string;
+}
+
+const SignupPage = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ISignupFormInput>({
+    resolver: yupResolver(signupSchema),
+  });
+
+  const onSubmitSignup: SubmitHandler<ISignupFormInput> = async (data) => {
+    delete data.passwordCheck;
+
+    try {
+      const res = await axios.post('http://localhost:3001/users', data);
+      if (res.status === 201) {
+        reset();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className='w-[90%] pt-6 m-auto'>
         <HeadInfo title='Yammy 가입' />
         <h1 className='font-sans text-3xl mb-7'>회원가입</h1>
 
-        <div className='flex flex-col items-center gap-4'>
+        <form
+          onSubmit={handleSubmit(onSubmitSignup)}
+          className='flex flex-col gap-4'
+        >
           <input
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] pl-[15px] border-2 border-default focus:border-primary  focus:outline-none'
+            {...register('email')}
+            className='w-full h-[50px] max-w-[342px] rounded-[50px] px-[15px] border-2 border-default focus:border-primary  focus:outline-none'
             type='text'
             placeholder='email'
           />
           <input
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] pl-[15px] border-2 border-default focus:border-primary  focus:outline-none'
+            {...register('nickname')}
+            className='w-full h-[50px] max-w-[342px] rounded-[50px] px-[15px] border-2 border-default focus:border-primary  focus:outline-none'
             type='text'
             placeholder='nickname'
           />
           <input
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] pl-[15px] border-2 border-default focus:border-primary  focus:outline-none'
+            {...register('password')}
+            className='w-full h-[50px] max-w-[342px] rounded-[50px] px-[15px] border-2 border-default focus:border-primary  focus:outline-none'
             type='password'
             placeholder='password'
           />
           <input
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] pl-[15px] border-2 border-default focus:border-primary  focus:outline-none'
-            type='password-check'
-            placeholder='password-check'
+            {...register('passwordCheck')}
+            className='w-full h-[50px] max-w-[342px] rounded-[50px] px-[15px] border-2 border-default focus:border-primary  focus:outline-none'
+            type='password'
+            placeholder='passwordCheck'
           />
-
-          <button className='w-full h-[54px] max-w-[342px] rounded-[50px] bg-primary text-white shadow-sm '>
+          <span className='text-rose-200 text-xs'>
+            {errors.passwordCheck?.message}
+          </span>
+          <button
+            type='submit'
+            className='w-full h-[54px] max-w-[342px] rounded-[50px] bg-primary text-white shadow-sm '
+          >
             회원가입
           </button>
-        </div>
+          <Link className='text-gray-500 text-end' href='/login'>
+            이미 가입하셨나요?
+          </Link>
+        </form>
       </div>
     </>
   );
 };
 
-export default signupPage;
+export default SignupPage;

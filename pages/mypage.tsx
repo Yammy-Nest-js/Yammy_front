@@ -1,6 +1,6 @@
 import HeadInfo from '../components/Headinfo';
 
-const mypage = () => {
+const Mypage = () => {
   return (
     <>
       <div>
@@ -11,4 +11,4 @@ const mypage = () => {
   );
 };
 
-export default mypage;
+export default Mypage;

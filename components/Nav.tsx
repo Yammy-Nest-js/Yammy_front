@@ -7,13 +7,19 @@ const Nav = () => {
       <ul className='flex justify-around'>
         <li className='flex items-center justify-center flex-none w-14 h-14 '>
           <Link href='/'>
-            <Image src='/home.svg' alt='Home' width={16} height={15} priority />
+            <Image
+              src='/icons/home.svg'
+              alt='Home'
+              width={16}
+              height={15}
+              priority
+            />
           </Link>
         </li>
         <li className='flex items-center justify-center flex-none w-14 h-14'>
           <Link href='search'>
             <Image
-              src='/search.svg'
+              src='/icons/search.svg'
               alt='검색'
               width={16}
               height={17}
@@ -24,7 +30,7 @@ const Nav = () => {
         <li className='flex items-center justify-center flex-none w-14 h-14'>
           <button className='plusbtn'>
             <Image
-              src='/plus.svg'
+              src='/icons/plus.svg'
               alt='식단추가'
               width={14}
               height={14}
@@ -35,7 +41,7 @@ const Nav = () => {
         <li className='flex items-center justify-center flex-none w-14 h-14'>
           <Link href='board'>
             <Image
-              src='/chat.svg'
+              src='/icons/chat.svg'
               alt='게시판'
               width={18}
               height={17}
@@ -46,7 +52,7 @@ const Nav = () => {
         <li className='flex items-center justify-center flex-none w-14 h-14'>
           <Link href='mypage'>
             <Image
-              src='/person.svg'
+              src='/icons/person.svg'
               alt='마이페이지'
               width={12}
               height={17}

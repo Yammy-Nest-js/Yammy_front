@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import HeadInfo from 'components/Headinfo';
+import Link from 'next/link';
 
-const loginPage: FC = () => {
+const LoginPage: FC = () => {
   return (
     <>
       <div className='w-[90%] pt-6 m-auto'>
@@ -23,10 +24,13 @@ const loginPage: FC = () => {
           <button className='w-full h-[54px] max-w-[342px] rounded-[50px] bg-primary text-white shadow-sm '>
             로그인
           </button>
+          <Link className='text-gray-500' href='/signup'>
+            회원이 아니신가요?
+          </Link>
         </div>
       </div>
     </>
   );
 };
 
-export default loginPage;
+export default LoginPage;

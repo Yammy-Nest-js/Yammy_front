@@ -1,6 +1,6 @@
 import HeadInfo from '../components/Headinfo';
 
-const board = () => {
+const Board = () => {
   return (
     <>
       <div>
@@ -11,4 +11,4 @@ const board = () => {
   );
 };
 
-export default board;
+export default Board;

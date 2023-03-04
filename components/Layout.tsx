@@ -10,7 +10,6 @@ interface IProp {
 const Layout = ({ children }: IProp) => {
   return (
     <>
-      <HeadInfo />
       <Nav />
       <div>{children}</div>
     </>

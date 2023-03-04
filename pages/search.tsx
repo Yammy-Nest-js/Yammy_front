@@ -1,6 +1,6 @@
 import HeadInfo from '../components/Headinfo';
 
-const search = () => {
+const Search = () => {
   return (
     <>
       <div>
@@ -11,4 +11,4 @@ const search = () => {
   );
 };
 
-export default search;
+export default Search;
