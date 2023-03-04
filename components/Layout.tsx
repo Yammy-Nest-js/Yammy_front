@@ -1,7 +1,13 @@
+import type { ReactElement } from 'react';
+
 import HeadInfo from './Headinfo';
 import Nav from './Nav';
 
-const Layout = ({ children }) => {
+interface IProp {
+  children: ReactElement;
+}
+
+const Layout = ({ children }: IProp) => {
   return (
     <>
       <HeadInfo />
