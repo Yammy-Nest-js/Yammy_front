@@ -43,7 +43,7 @@ const SignupPage = () => {
 
         <form
           onSubmit={handleSubmit(onSubmitSignup)}
-          className='flex flex-col gap-4'
+          className='flex flex-col gap-4 items-center'
         >
           <input
             {...register('email')}
@@ -78,7 +78,7 @@ const SignupPage = () => {
           >
             회원가입
           </button>
-          <Link className='text-gray-500 text-end' href='/login'>
+          <Link className='text-gray-500 text-center' href='/login'>
             이미 가입하셨나요?
           </Link>
         </form>
