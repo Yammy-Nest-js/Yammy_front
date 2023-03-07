@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import HeadInfo from 'components/Headinfo';
+import Input from 'components/Input';
 import Link from 'next/link';
 
 const LoginPage: FC = () => {
@@ -10,16 +11,9 @@ const LoginPage: FC = () => {
         <h1 className='font-sans text-3xl mb-7'>로그인</h1>
 
         <div className='flex flex-col items-center gap-4'>
-          <input
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] pl-[15px] border-2 border-default focus:border-primary  focus:outline-none'
-            type='text'
-            placeholder='email'
-          />
-          <input
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] pl-[15px] border-2 border-default focus:border-primary  focus:outline-none'
-            type='password'
-            placeholder='password'
-          />
+          
+          <Input type="text" placeholder='email'/>
+          <Input type="password" placeholder='password'/>
 
           <button className='w-full h-[54px] max-w-[342px] rounded-[50px] bg-primary text-white shadow-sm '>
             로그인
