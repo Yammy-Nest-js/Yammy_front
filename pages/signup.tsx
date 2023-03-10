@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { signupSchema } from 'utils/resolver/auth.schema';
 
 interface ISignupFormInput {
+  type:string;
   email: string;
   nickname: string;
   password: string;
