@@ -8,7 +8,7 @@ export interface Profile {
     name: string;
     catchPhrase: string;
     bs: string;
-  }
+  };
 }
 
 export interface ProfileProps {
@@ -16,10 +16,7 @@ export interface ProfileProps {
 }
 
 const Profile: React.FC<ProfileProps> = ({ profile }) => {
-  console.log('Profile component props:', profile);
-
   if (!profile) {
-    console.log('Profile prop is undefined');
     return <div>Loading profile...</div>;
   }
 

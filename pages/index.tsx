@@ -3,12 +3,12 @@ import Profile, { ProfileProps } from 'components/Profile';
 import Calorie, { CalorieProps } from 'components/Calorie';
 
 //dummydata
-import CalData from 'components/CalData';
+import CalData from '@/utils/mock/CalData';
 
-
-export default function Home({ profile, CalData }: ProfileProps & CalorieProps) {
-
-
+export default function Home({
+  profile,
+  CalData,
+}: ProfileProps & CalorieProps) {
   return (
     <>
       <Head>
@@ -24,29 +24,27 @@ export default function Home({ profile, CalData }: ProfileProps & CalorieProps) 
           <Calorie CalData={CalData} />
           <div className='w-[90%] m-auto mt-[16px] pt-[27px] h-100vh'>
             <h2 className='w-[100%] m-auto font-bold'>TODAY'S MENU</h2>
-            <button className='w-[100%] max-w[342px] h-[54px] mt-[18px] m-auto bg-primary text-white rounded-[50px]'> 오늘의식사 입력하기 </button>
+            <button className='w-[100%] max-w[342px] h-[54px] mt-[18px] m-auto bg-primary text-white rounded-[50px]'>
+              {' '}
+              오늘의식사 입력하기{' '}
+            </button>
           </div>
         </div>
-
-
       </main>
     </>
   );
 }
-
-
 
 //profile data
 export const getStaticProps = async () => {
   try {
     const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
     const profile: ProfileProps['profile'] = await res.json();
-    console.log('Profile fetched from server:', profile);
 
     return {
       props: {
         profile,
-        CalData
+        CalData,
       },
       revalidate: 3600, // revalidate every hour
     };

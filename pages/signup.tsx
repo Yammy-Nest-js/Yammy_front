@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { signupSchema } from 'utils/resolver/auth.schema';
 
 interface ISignupFormInput {
-  type:string;
+  type: string;
   email: string;
   nickname: string;
   password: string;
@@ -27,8 +27,8 @@ const SignupPage = () => {
   const onSubmitSignup: SubmitHandler<ISignupFormInput> = async (data) => {
     delete data.passwordCheck;
 
-
     try {
+      // TODO : mock data 삭제하기
       const res = await axios.post('http://localhost:3001/users', data);
       if (res.status === 201) {
         reset();
@@ -48,11 +48,10 @@ const SignupPage = () => {
           onSubmit={handleSubmit(onSubmitSignup)}
           className='flex flex-col gap-4 items-center'
         >
-
           <Input
             register={register}
-            name="email"
-            type="text"
+            name='email'
+            type='text'
             placeholder='email'
             message={errors.email?.message}
             error={errors.email}
@@ -60,8 +59,8 @@ const SignupPage = () => {
 
           <Input
             register={register}
-            name="nickname"
-            type="text"
+            name='nickname'
+            type='text'
             placeholder='nickname'
             message={errors.nickname?.message}
             error={errors.nickname}
@@ -69,8 +68,8 @@ const SignupPage = () => {
 
           <Input
             register={register}
-            name="password"
-            type="password"
+            name='password'
+            type='password'
             placeholder='password'
             message={errors.password?.message}
             error={errors.password}
@@ -78,8 +77,8 @@ const SignupPage = () => {
 
           <Input
             register={register}
-            name="passwordCheck"
-            type="password"
+            name='passwordCheck'
+            type='password'
             placeholder='passwordCheck'
             message={errors.passwordCheck?.message}
             error={errors.passwordCheck}
