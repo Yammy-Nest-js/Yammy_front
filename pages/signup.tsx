@@ -1,5 +1,6 @@
 import axios from 'axios';
 import HeadInfo from 'components/Headinfo';
+import Input from 'components/Input';
 import Link from 'next/link';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -25,6 +26,7 @@ const SignupPage = () => {
   const onSubmitSignup: SubmitHandler<ISignupFormInput> = async (data) => {
     delete data.passwordCheck;
 
+
     try {
       const res = await axios.post('http://localhost:3001/users', data);
       if (res.status === 201) {
@@ -45,33 +47,43 @@ const SignupPage = () => {
           onSubmit={handleSubmit(onSubmitSignup)}
           className='flex flex-col gap-4 items-center'
         >
-          <input
-            {...register('email')}
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] px-[15px] border-2 border-default focus:border-primary  focus:outline-none'
-            type='text'
+
+          <Input
+            register={register}
+            name="email"
+            type="text"
             placeholder='email'
+            message={errors.email?.message}
+            error={errors.email}
           />
-          <input
-            {...register('nickname')}
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] px-[15px] border-2 border-default focus:border-primary  focus:outline-none'
-            type='text'
+
+          <Input
+            register={register}
+            name="nickname"
+            type="text"
             placeholder='nickname'
+            message={errors.nickname?.message}
+            error={errors.nickname}
           />
-          <input
-            {...register('password')}
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] px-[15px] border-2 border-default focus:border-primary  focus:outline-none'
-            type='password'
+
+          <Input
+            register={register}
+            name="password"
+            type="password"
             placeholder='password'
+            message={errors.password?.message}
+            error={errors.password}
           />
-          <input
-            {...register('passwordCheck')}
-            className='w-full h-[50px] max-w-[342px] rounded-[50px] px-[15px] border-2 border-default focus:border-primary  focus:outline-none'
-            type='password'
+
+          <Input
+            register={register}
+            name="passwordCheck"
+            type="password"
             placeholder='passwordCheck'
+            message={errors.passwordCheck?.message}
+            error={errors.passwordCheck}
           />
-          <span className='text-rose-200 text-xs'>
-            {errors.passwordCheck?.message}
-          </span>
+
           <button
             type='submit'
             className='w-full h-[54px] max-w-[342px] rounded-[50px] bg-primary text-white shadow-sm '
