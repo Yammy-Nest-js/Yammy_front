@@ -1,6 +1,14 @@
 import Head from 'next/head';
+import Profile, { ProfileProps } from 'components/Profile';
+import Calorie, { CalorieProps } from 'components/Calorie';
 
-export default function Home() {
+//dummydata
+import CalData from '@/utils/mock/CalData';
+
+export default function Home({
+  profile,
+  CalData,
+}: ProfileProps & CalorieProps) {
   return (
     <>
       <Head>
@@ -9,6 +17,41 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      <main>
+        <Profile profile={profile} />
+        <div className='bg-gray rounded-t-[36px]'>
+          <Calorie CalData={CalData} />
+          <div className='w-[90%] m-auto mt-[16px] pt-[27px] h-100vh'>
+            <h2 className='w-[100%] m-auto font-bold'>TODAY'S MENU</h2>
+            <button className='w-[100%] max-w[342px] h-[54px] mt-[18px] m-auto bg-primary text-white rounded-[50px]'>
+              {' '}
+              오늘의식사 입력하기{' '}
+            </button>
+          </div>
+        </div>
+      </main>
     </>
   );
 }
+
+//profile data
+export const getStaticProps = async () => {
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
+    const profile: ProfileProps['profile'] = await res.json();
+
+    return {
+      props: {
+        profile,
+        CalData,
+      },
+      revalidate: 3600, // revalidate every hour
+    };
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    return {
+      props: {},
+    };
+  }
+};
