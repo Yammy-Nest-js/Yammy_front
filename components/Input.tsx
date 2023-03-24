@@ -7,6 +7,7 @@ interface Input {
     register: any;
     required?: boolean;
     error?: any;
+    onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const Input = ({ name, type, placeholder, message, error, register }: Input) => {

@@ -58,6 +58,8 @@ const Mypage = ({ initialData }: { initialData: ProfileFormInput }) => {
 
   const updateSQLData = () => {
     // Make API call to update SQL data
+    // You can use any library or method to make the API call, such as Axios or fetch
+    // Here's an example using fetch:
     fetch('/api/updateUserData', {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -86,21 +88,23 @@ const Mypage = ({ initialData }: { initialData: ProfileFormInput }) => {
             </div>
 
             <Input
-              register={register('height', { onChange: handleInputChange })}
+              register={register}
               name='height'
               type='text'
               placeholder={`키 ${formData && formData.height ? formData.height : ''}cm`}
               message={errors.height?.message}
               error={errors.height}
+              onChange={handleInputChange}
             />
 
             <Input
-              register={register('height', { onChange: handleInputChange })}
+              register={register}
               name='weight'
               type='text'
               placeholder={`몸무게 ${formData && formData.weight ? formData.weight : ''}kg`}
-              message={errors.height?.message}
-              error={errors.height}
+              message={errors.weight?.message}
+              error={errors.weight}
+              onChange={handleInputChange}
             />
 
 
